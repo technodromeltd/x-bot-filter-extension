@@ -76,13 +76,10 @@
 
   async function init() {
     let rules = await loadRules();
-    console.log("rules", rules);
 
     // Initial observer: wait for first tweets to appear, then process and disconnect
     const initialObserver = new MutationObserver(() => {
-      console.log("Initial observer triggered");
       const tweets = document.querySelectorAll('article[data-testid="tweet"]');
-      console.log("tweets.length", tweets.length);
       if (tweets.length > 0) {
         hideVisibleTweets(rules);
         initialObserver.disconnect();

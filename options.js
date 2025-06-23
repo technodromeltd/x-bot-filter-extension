@@ -1,5 +1,7 @@
-document.addEventListener("DOMContentLoaded", restoreOptions);
-document.getElementById("ruleForm").addEventListener("submit", saveOptions);
+document.addEventListener("DOMContentLoaded", () => {
+  restoreOptions();
+  document.getElementById("ruleForm").addEventListener("submit", saveOptions);
+});
 
 function saveOptions(e) {
   e.preventDefault();
