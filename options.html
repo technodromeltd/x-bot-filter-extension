@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bot Filter Options</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 20px;
+      }
+      label {
+        display: block;
+        margin-top: 10px;
+      }
+      #status {
+        color: green;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Bot Filter Options</h1>
+    <form id="ruleForm">
+      <label>
+        Cashtag rule: Hide tweets with at least
+        <input type="number" id="value" min="0" value="3" style="width: 60px" />
+        cashtags
+      </label>
+      <label>
+        <input type="checkbox" id="filterNonEnglish" />
+        Hide non-English alphabet tweets
+      </label>
+      <label>
+        <input type="checkbox" id="debugLogging" />
+        Enable debug logging (log hidden tweets to console)
+      </label>
+      <button type="submit">Save</button>
+      <div id="status"></div>
+    </form>
+    <script src="options.js"></script>
+  </body>
+</html>

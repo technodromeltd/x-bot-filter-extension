@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "X Bot Filter",
+  "description": "Hide posts from finbots",
+  "version": "1.0.0",
+  "permissions": ["storage", "scripting"],
+  "host_permissions": ["https://twitter.com/", "https://x.com/"],
+  "action": {
+    "default_title": "Bot Filter",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://twitter.com/*", "https://x.com/*"],
+      "js": ["content_script.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_page": "options.html",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
