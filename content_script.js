@@ -77,12 +77,17 @@
   async function init() {
     let rules = await loadRules();
 
-    // Initial observer: wait for first tweets to appear, then process and disconnect
+    // Initial observer: wait for a burst of tweets to appear, then process and disconnect
+    let initialDebounceTimer = null;
+    const INITIAL_DEBOUNCE_DELAY = 500; // ms
     const initialObserver = new MutationObserver(() => {
       const tweets = document.querySelectorAll('article[data-testid="tweet"]');
       if (tweets.length > 0) {
-        hideVisibleTweets(rules);
-        initialObserver.disconnect();
+        if (initialDebounceTimer) clearTimeout(initialDebounceTimer);
+        initialDebounceTimer = setTimeout(() => {
+          hideVisibleTweets(rules);
+          initialObserver.disconnect();
+        }, INITIAL_DEBOUNCE_DELAY);
       }
     });
     initialObserver.observe(document.body, { childList: true, subtree: true });
